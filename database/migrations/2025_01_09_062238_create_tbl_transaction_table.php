@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('tbl_transaction', function (Blueprint $table) {
             $table->bigIncrements('id_transaction');
-            $table->unsignedBigInteger('id_user');
-            $table->unsignedBigInteger('id_photo');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('photo_id');
             $table->decimal('amount', 10, 2);
             $table->unsignedBigInteger('status_id');
             $table->string('payment_status', 50);
             $table->string('stripe_payment_id', 50)->nullable();
             $table->timestamps();
 
-            $table->foreign('id_user')->references('id_user')->on('tbl_user')->onDelete('cascade');
-            $table->foreign('id_photo')->references('id_photo')->on('tbl_photo')->onDelete('cascade');
+            $table->foreign('user_id')->references('id_user')->on('tbl_user')->onDelete('cascade');
+            $table->foreign('photo_id')->references('id_photo')->on('tbl_photo')->onDelete('cascade');
             $table->foreign('status_id')->references('id_status')->on('tbl_transaction_status')->onDelete('cascade');
         });
     }

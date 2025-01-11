@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('tbl_photo', function (Blueprint $table) {
             $table->bigIncrements('id_photo');
-            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('user_id');
             $table->string('file_name', 200);
             $table->string('file_path', 255);
             $table->decimal('price', 10, 2)->nullable();
             $table->timestamps();
 
-            $table->foreign('id_user')->references('id_user')->on('tbl_user')->onDelete('cascade');
+            $table->foreign('user_id')->references('id_user')->on('tbl_user')->onDelete('cascade');
         });
     }
 

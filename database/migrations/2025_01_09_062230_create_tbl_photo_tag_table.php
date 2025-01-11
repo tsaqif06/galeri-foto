@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('tbl_photo_tag', function (Blueprint $table) {
             $table->bigIncrements('id_photo_tag');
-            $table->unsignedBigInteger('id_photo');
-            $table->unsignedBigInteger('id_tag');
+            $table->unsignedBigInteger('photo_id');
+            $table->unsignedBigInteger('tag_id');
             $table->timestamps();
 
-            $table->foreign('id_photo')->references('id_photo')->on('tbl_photo')->onDelete('cascade');
-            $table->foreign('id_tag')->references('id_tag')->on('tbl_tag')->onDelete('cascade');
+            $table->foreign('photo_id')->references('id_photo')->on('tbl_photo')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id_tag')->on('tbl_tag')->onDelete('cascade');
         });
     }
 
