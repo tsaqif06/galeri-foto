@@ -10,13 +10,13 @@
 </head>
 
 <body>
-    @include('header')
+    @include('partials.header')
 
     <div class="container">
         @yield('content')
     </div>
 
-    @include('footer')
+    @include('partials.footer')
 
     <!-- Include Bootstrap JS and Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
