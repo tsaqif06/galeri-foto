@@ -13,7 +13,7 @@
                                 alt="{{ $photo->file_name }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $photo->file_name }}</h5>
-                                <p class="card-text">{{ $photo->price }}</p>
+                                <p class="card-text">Rp. {{ $photo->price }}</p>
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                                 alt="{{ $photo->file_name }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $photo->file_name }}</h5>
-                                <p class="card-text">{{ $photo->price }}</p>
+                                <p class="card-text">Rp. {{ $photo->price }}</p>
                             </div>
                         </div>
                     </div>
