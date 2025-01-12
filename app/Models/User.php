@@ -34,6 +34,11 @@ class User extends Authenticatable
     // Relasi dengan foto
     public function photos()
     {
-        return $this->hasMany(Photo::class, 'user_id');
+        return $this->hasMany(Photo::class, 'user_id')->orderBy('created_at', 'desc')->orderBy('id', 'desc');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'tbl_user_tag', 'user_id', 'tag_id');
     }
 }

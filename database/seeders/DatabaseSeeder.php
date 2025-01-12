@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             PhotoTagTableSeeder::class,
             CommentsTableSeeder::class,
             LikesTableSeeder::class,
+            UserTagTableSeeder::class,
         ]);
     }
 }

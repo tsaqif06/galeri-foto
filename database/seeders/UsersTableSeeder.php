@@ -12,24 +12,27 @@ class UsersTableSeeder extends Seeder
     {
         // Admin user
         User::factory()->create([
-            'uuid' => (string) Str::uuid(),
+            'username' => 'admin',
             'name' => 'Admin User',
             'email' => 'admin@gmail.com',
+            'description' => '',
             'role_id' => 1,
         ]);
 
         User::factory()->create([
-            'uuid' => (string) Str::uuid(),
+            'username' => 'creator',
             'name' => 'Creator User',
             'email' => 'creator@gmail.com',
+            'description' => 'Apa kabar',
             'role_id' => 2,
             'stripe_account_id' => 'acct_test_stripe',
         ]);
 
         User::factory()->create([
-            'uuid' => (string) Str::uuid(),
+            'username' => 'buyer',
             'name' => 'Buyer User',
             'email' => 'buyer@gmail.com',
+            'description' => 'Haloo',
             'role_id' => 2,
         ]);
 

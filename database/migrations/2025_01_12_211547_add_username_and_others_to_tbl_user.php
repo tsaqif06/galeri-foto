@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('tbl_user', function (Blueprint $table) {
-            $table->uuid('uuid')->unique()->after('id_user'); // Tambahkan UUID setelah id_user
+            $table->string('username', 50)->unique()->after('id_user');
+            $table->text('description')->nullable()->after('email');
         });
     }
 
@@ -22,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('tbl_user', function (Blueprint $table) {
-            $table->dropColumn('uuid');
+            $table->dropColumn(['username', 'description']); // Menghapus kolom jika rollback
         });
     }
 };
