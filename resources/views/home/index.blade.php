@@ -9,8 +9,9 @@
                 @foreach ($recentPhotos as $photo)
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <img src="{{ asset('storage/' . $photo->file_path) }}" class="card-img-top"
-                                alt="{{ $photo->file_name }}">
+                            <img src="{{ $photo->file_path }}" class="img-fluid mb-2" alt="{{ $photo->file_name }}">
+                            {{--  <img src="{{ asset('storage/' . $photo->file_path) }}" class="img-fluid mb-2"
+                                alt="{{ $photo->file_name }}">  --}}
                             <div class="card-body">
                                 <p class="card-text">Rp. {{ $photo->price }}</p>
                             </div>
@@ -27,8 +28,9 @@
                 @foreach ($popularPhotos as $photo)
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <img src="{{ asset('storage/' . $photo->file_path) }}" class="card-img-top"
-                                alt="{{ $photo->file_name }}">
+                            <img src="{{ $photo->file_path }}" class="img-fluid mb-2" alt="{{ $photo->file_name }}">
+                            {{--  <img src="{{ asset('storage/' . $photo->file_path) }}" class="img-fluid mb-2"
+                                alt="{{ $photo->file_name }}">  --}}
                             <div class="card-body">
                                 <p class="card-text">Rp. {{ $photo->price }}</p>
                             </div>
@@ -49,8 +51,10 @@
                                 <h5 class="card-title">{{ $category->name }}</h5>
                                 <div class="category-photos">
                                     @foreach ($category->photos as $photo)
-                                        <img src="{{ asset('storage/' . $photo->file_path) }}" class="img-fluid mb-2"
+                                        <img src="{{ $photo->file_path }}" class="img-fluid mb-2"
                                             alt="{{ $photo->file_name }}">
+                                        {{--  <img src="{{ asset('storage/' . $photo->file_path) }}" class="img-fluid mb-2"
+                                        alt="{{ $photo->file_name }}">  --}}
                                     @endforeach
                                 </div>
                             </div>
