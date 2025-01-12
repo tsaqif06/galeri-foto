@@ -9,9 +9,19 @@
                 @foreach ($recentPhotos as $photo)
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <img src="{{ $photo->file_path }}" class="img-fluid mb-2" alt="{{ $photo->file_name }}">
-                            {{--  <img src="{{ asset('storage/' . $photo->file_path) }}" class="img-fluid mb-2"
-                                alt="{{ $photo->file_name }}">  --}}
+                            <a href="{{ route('photo.show', $photo->slug) }}">
+                                <div class="position-relative">
+                                    <img src="{{ $photo->file_path }}" class="img-fluid mb-2" alt="{{ $photo->file_name }}">
+                                    {{--  <img src="{{ asset('storage/' . $photo->file_path) }}" class="img-fluid mb-2"
+                                        alt="{{ $photo->file_name }}">  --}}
+                                    @if ($photo->price > 0)
+                                        <span class="position-absolute top-0 start-0 bg-warning text-dark px-2 py-1"
+                                            style="border-radius: 0 0 4px 0;">
+                                            <i class="fas fa-crown"></i> Premium
+                                        </span>
+                                    @endif
+                                </div>
+                            </a>
                             <div class="card-body">
                                 <p class="card-text">Rp. {{ $photo->price }}</p>
                             </div>
@@ -28,9 +38,19 @@
                 @foreach ($popularPhotos as $photo)
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <img src="{{ $photo->file_path }}" class="img-fluid mb-2" alt="{{ $photo->file_name }}">
-                            {{--  <img src="{{ asset('storage/' . $photo->file_path) }}" class="img-fluid mb-2"
+                            <a href="{{ route('photo.show', $photo->id_photo) }}">
+                                <div class="position-relative">
+                                    <img src="{{ $photo->file_path }}" class="img-fluid mb-2" alt="{{ $photo->file_name }}">
+                                    {{--  <img src="{{ asset('storage/' . $photo->file_path) }}" class="img-fluid mb-2"
                                 alt="{{ $photo->file_name }}">  --}}
+                                    @if ($photo->price > 0)
+                                        <span class="position-absolute top-0 start-0 bg-warning text-dark px-2 py-1"
+                                            style="border-radius: 0 0 4px 0;">
+                                            <i class="fas fa-crown"></i> Premium
+                                        </span>
+                                    @endif
+                                </div>
+                            </a>
                             <div class="card-body">
                                 <p class="card-text">Rp. {{ $photo->price }}</p>
                             </div>

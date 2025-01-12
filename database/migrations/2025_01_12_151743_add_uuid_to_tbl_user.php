@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tbl_photo', function (Blueprint $table) {
-            $table->integer('views')->default(0)->after('price');
+        Schema::table('tbl_user', function (Blueprint $table) {
+            $table->uuid('uuid')->unique()->after('id_user'); // Tambahkan UUID setelah id_user
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tbl_photo', function (Blueprint $table) {
-            $table->dropColumn('views');
+        Schema::table('tbl_user', function (Blueprint $table) {
+            $table->dropColumn('uuid');
         });
     }
 };

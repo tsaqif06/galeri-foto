@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('tbl_photo', function (Blueprint $table) {
-            $table->integer('views')->default(0)->after('price');
+            $table->string('slug', 255)->unique()->after('file_name'); // Tambahkan slug setelah file_name
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('tbl_photo', function (Blueprint $table) {
-            $table->dropColumn('views');
+            $table->dropColumn('slug');
         });
     }
 };

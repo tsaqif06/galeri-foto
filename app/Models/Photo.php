@@ -11,7 +11,7 @@ class Photo extends Model
 
     protected $table = 'tbl_photo';
     protected $primaryKey = 'id_photo';
-    protected $fillable = ['user_id', 'file_name', 'file_path', 'price', 'views'];
+    protected $fillable = ['user_id', 'file_name', 'file_path', 'slug', 'price', 'views'];
     public $timestamps = true;
 
     // Relasi dengan user
