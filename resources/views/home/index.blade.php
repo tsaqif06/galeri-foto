@@ -30,7 +30,6 @@
                             <img src="{{ asset('storage/' . $photo->file_path) }}" class="card-img-top"
                                 alt="{{ $photo->file_name }}">
                             <div class="card-body">
-                                <h5 class="card-title">{{ $photo->file_name }}</h5>
                                 <p class="card-text">Rp. {{ $photo->price }}</p>
                             </div>
                         </div>
