@@ -20,5 +20,5 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 
-Route::get('/user/{uuid}', [UserController::class, 'profile'])->name('user.profile');
+Route::get('/{username}', [UserController::class, 'profile'])->name('profile.show');
 Route::get('/photo/{slug}', [PhotoController::class, 'show'])->name('photo.show');

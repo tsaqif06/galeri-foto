@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-6">
                 <h2>{{ $photo->file_name }}</h2>
-                <p>Uploaded by: {{ $photo->user->name }}</p>
+                <p>Uploaded by: <a href="{{ route('profile.show', ['username' => $photo->user->username]) }}">{{ $photo->user->name }}</a></p>
                 <p>Price: {{ $photo->price > 0 ? 'Rp. ' . $photo->price : 'Free' }}</p>
                 <p>Views: {{ $photo->views }}</p>
                 <a href="#" class="btn btn-primary">Download</a>

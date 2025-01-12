@@ -7,9 +7,9 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function profile($uuid, Request $request)
+    public function profile($username, Request $request)
     {
-        $user = User::where('uuid', $uuid)->with('photos')->firstOrFail();
+        $user = User::where('username', $username)->with('photos')->firstOrFail();
 
         if ($this->isApiRequest($request)) {
             return response()->json([

@@ -9,7 +9,7 @@ use App\Http\Controllers\PhotoController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/profile/{uuid}', [UserController::class, 'profile']);
+Route::get('/profile/{username}', [UserController::class, 'profile']);
 Route::get('/photo/{slug}', [PhotoController::class, 'show']);
 
 
