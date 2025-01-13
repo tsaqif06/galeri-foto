@@ -14,11 +14,14 @@ class User extends Authenticatable
     protected $table = 'tbl_user';
     protected $primaryKey = 'id_user';
     protected $fillable = [
+        'username',
         'name',
         'email',
         'password',
+        'profile_picture',
         'role_id',
-        'stripe_account_id'
+        'stripe_account_id',
+        'description'
     ];
     protected $hidden = [
         'password',
