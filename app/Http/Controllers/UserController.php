@@ -26,8 +26,7 @@ class UserController extends Controller
 
         $albums = Album::when(auth()->check(), function ($query) use ($user) {
             if (auth()->user()->id_user === $user->id_user) {
-                return $query->where('user_id', $user->id_user)
-                    ->orWhere('visibility', 'public');
+                return $query->where('user_id', $user->id_user);
             }
             return $query->where('user_id', $user->id_user)
                 ->where('visibility', 'public');
