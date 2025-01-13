@@ -16,8 +16,8 @@
             <div class="row">
                 <div class="col-md-2">
                     <!-- Profile Picture -->
-                    <img src="{{ $user->profile_picture ?? asset('images/default-profile.png') }}" class="img-thumbnail"
-                        alt="{{ $user->name }}">
+                    <img src="{{ $user->profile_picture ?? asset('storage/images/default-profile.jpeg') }}"
+                        class="img-thumbnail" alt="{{ $user->name }}">
                 </div>
                 <div class="col-md-10">
                     <h1>{{ $user->name }}</h1>
