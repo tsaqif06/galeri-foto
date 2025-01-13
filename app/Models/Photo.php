@@ -56,6 +56,7 @@ class Photo extends Model
         return $this->hasMany(Transaction::class, 'photo_id');
     }
 
+    // Relasi dengan album (many-to-many)
     public function albums()
     {
         return $this->belongsToMany(
@@ -66,11 +67,13 @@ class Photo extends Model
         );
     }
 
+    // Scope untuk foto publik
     public function scopePublic($query)
     {
         return $query->where('visibility', 'public');
     }
 
+    // Scope untuk foto private
     public function scopePrivate($query)
     {
         return $query->where('visibility', 'private');

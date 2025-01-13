@@ -37,21 +37,38 @@ class User extends Authenticatable
     // Relasi dengan foto
     public function photos()
     {
-        return $this->hasMany(Photo::class, 'user_id')->orderBy('created_at', 'desc')->orderBy('id_photo', 'desc');
+        return $this->hasMany(Photo::class, 'user_id')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('id_photo', 'desc');
     }
 
+    // Relasi dengan tag
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'tbl_user_tag', 'user_id', 'tag_id');
     }
 
+    // Relasi dengan followers
     public function followers()
     {
         return $this->belongsToMany(User::class, 'tbl_follow', 'following_id', 'follower_id')->withTimestamps();
     }
 
+    // Relasi dengan followings
     public function followings()
     {
         return $this->belongsToMany(User::class, 'tbl_follow', 'follower_id', 'following_id')->withTimestamps();
+    }
+
+    // Relasi dengan favorite (many-to-many dengan Photo)
+    public function favorites()
+    {
+        return $this->belongsToMany(Photo::class, 'tbl_favorite', 'user_id', 'photo_id')->withTimestamps();
+    }
+
+    // Relasi dengan album
+    public function albums()
+    {
+        return $this->hasMany(Album::class, 'user_id');
     }
 }

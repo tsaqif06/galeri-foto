@@ -19,8 +19,12 @@ class PhotoController extends Controller
 
     public function show($slug, Request $request)
     {
-        $photo = Photo::with('user')->where('slug', $slug)->firstOrFail();
+        // Ambil data foto dengan relasi user, likes, comments, dan favorites
+        $photo = Photo::with(['user', 'likes', 'comments', 'favorites'])
+            ->where('slug', $slug)
+            ->firstOrFail();
 
+        // Validasi visibilitas foto (hanya pemilik yang boleh lihat jika private)
         if ($photo->visibility === 'private') {
             $user = $this->isApiRequest($request) ? auth('api')->user() : auth()->user();
 
@@ -36,16 +40,30 @@ class PhotoController extends Controller
             }
         }
 
+        // Hitung total likes, apakah user menyukai foto, dan apakah disimpan user
+        $user = auth()->user();
+        $isLiked = $user ? $photo->likes->contains('user_id', $user->id_user) : false;
+        $isSaved = $user ? $photo->favorites->contains('user_id', $user->id_user) : false;
+
+        // Tambahkan view counter
+        $photo->increment('views');
+
+        // Jika API request, kirim data dalam bentuk JSON
         if ($this->isApiRequest($request)) {
             return response()->json([
                 'success' => true,
                 'data' => [
                     'photo' => $photo,
                     'user' => $photo->user,
+                    'likes_count' => $photo->likes->count(),
+                    'comments' => $photo->comments,
+                    'is_liked' => $isLiked,
+                    'is_saved' => $isSaved,
                 ],
             ], 200);
         }
 
-        return view('photo.show', compact('photo'));
+        // Render view untuk web
+        return view('photo.show', compact('photo', 'isLiked', 'isSaved'));
     }
 }
