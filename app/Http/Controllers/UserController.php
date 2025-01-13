@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function profile($username, Request $request)
     {
-        $user = User::where('username', $username)->firstOrFail();
+        $user = User::where('username', $username)->with(['followers', 'followings'])->firstOrFail();
 
         $photos = Photo::when(auth()->check(), function ($query) use ($user) {
             if (auth()->user()->id_user === $user->id_user) {

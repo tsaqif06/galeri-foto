@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\FollowController;
 
 
 // Route::get('/', function () {
@@ -22,3 +23,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 
 Route::get('/{username}', [UserController::class, 'profile'])->name('profile.show');
 Route::get('/photo/{slug}', [PhotoController::class, 'show'])->name('photo.show');
+
+Route::post('/follow/{username}', [FollowController::class, 'follow'])->name('follow');
+Route::post('/unfollow/{username}', [FollowController::class, 'unfollow'])->name('unfollow');

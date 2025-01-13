@@ -44,4 +44,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Tag::class, 'tbl_user_tag', 'user_id', 'tag_id');
     }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'tbl_follow', 'following_id', 'follower_id')->withTimestamps();
+    }
+
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'tbl_follow', 'follower_id', 'following_id')->withTimestamps();
+    }
 }
