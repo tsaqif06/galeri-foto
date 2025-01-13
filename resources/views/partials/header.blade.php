@@ -28,7 +28,7 @@
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li>
                                     <a class="dropdown-item"
-                                        href="{{ route('profile.show', ['uuid' => Auth::user()->uuid]) }}">
+                                        href="{{ route('profile.show', ['username' => Auth::user()->username]) }}">
                                         Profil Saya
                                     </a>
                                 </li>

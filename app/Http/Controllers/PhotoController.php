@@ -21,6 +21,21 @@ class PhotoController extends Controller
     {
         $photo = Photo::with('user')->where('slug', $slug)->firstOrFail();
 
+        if ($photo->visibility === 'private') {
+            $user = $this->isApiRequest($request) ? auth('api')->user() : auth()->user();
+
+            if (!$user || $user->id_user !== $photo->user_id) {
+                if ($this->isApiRequest($request)) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'You do not have permission to view this photo.'
+                    ], 403);
+                }
+
+                abort(403, 'You do not have permission to view this photo.');
+            }
+        }
+
         if ($this->isApiRequest($request)) {
             return response()->json([
                 'success' => true,

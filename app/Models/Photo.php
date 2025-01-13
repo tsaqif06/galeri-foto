@@ -11,7 +11,7 @@ class Photo extends Model
 
     protected $table = 'tbl_photo';
     protected $primaryKey = 'id_photo';
-    protected $fillable = ['user_id', 'file_name', 'file_path', 'slug', 'price', 'views'];
+    protected $fillable = ['user_id', 'file_name', 'file_path', 'slug', 'price', 'visibility', 'views'];
     public $timestamps = true;
 
     // Relasi dengan user
@@ -54,5 +54,25 @@ class Photo extends Model
     public function transactions()
     {
         return $this->hasMany(Transaction::class, 'photo_id');
+    }
+
+    public function albums()
+    {
+        return $this->belongsToMany(
+            Album::class,
+            'tbl_album_photo',   // Nama tabel pivot
+            'photo_id',          // Foreign key di tabel pivot untuk Photo
+            'album_id'           // Foreign key di tabel pivot untuk Album
+        );
+    }
+
+    public function scopePublic($query)
+    {
+        return $query->where('visibility', 'public');
+    }
+
+    public function scopePrivate($query)
+    {
+        return $query->where('visibility', 'private');
     }
 }

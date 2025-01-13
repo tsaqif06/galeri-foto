@@ -1,23 +1,38 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="container mt-4">
-        <h1>Profil {{ $user->name }}</h1>
-        <p>Email: {{ $user->email }}</p>
-        <p>Role: {{ $user->role->name }}</p>
+    <div class="container">
+        <h1>{{ $user->name }}</h1>
 
-        <h2>Foto Unggahan</h2>
+        <h3>Photos</h3>
         <div class="row">
-            @foreach ($user->photos as $photo)
+            @foreach ($photos as $photo)
+                <div class="col-md-4">
+                    <a href="{{ route('photo.show', $photo->slug) }}">
+                        <div class="card mb-4">
+                            <img src="{{ $photo->file_path }}" class="img-fluid" alt="{{ $photo->file_name }}">
+                            <div class="card-body">
+                                <a
+                                    href="{{ route('profile.show', ['username' => $photo->user->username]) }}">{{ $photo->user->name }}</a>
+                                <p>{{ $photo->visibility == 'public' ? 'Public' : 'Private' }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+
+        <h3>Albums</h3>
+        <div class="row">
+            @foreach ($albums as $album)
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <img src="{{ $photo->file_path }}" class="img-fluid" alt="{{ $photo->file_name }}">
                         <div class="card-body">
-                            @if ($photo->price > 0)
-                                <span class="badge bg-warning text-dark">Rp {{ $photo->price }}</span>
-                            @else
-                                <span class="badge bg-success">Gratis</span>
-                            @endif
+                            <h5 class="card-title">{{ $album->name }}</h5>
+                            <p>{{ $album->visibility == 'public' ? 'Public' : 'Private' }}</p>
+                            <p>Created by: <a
+                                    href="{{ route('profile.show', ['username' => $album->user->username]) }}">{{ $album->user->name }}</a>
+                            </p>
                         </div>
                     </div>
                 </div>
